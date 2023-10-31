@@ -1,0 +1,132 @@
+{% extends 'user/base.html' %}
+{% block title %} <title>KPI Foydalanuvchi </title> {% endblock %}
+
+{% block blockName %}
+
+
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper">
+
+            <div class="card">
+                <div class="row m-1">
+
+                    <div class="col">
+                        
+                        <a href="{% url 'home' %}" class="btn btn-inverse-primary">Bosh Sahifaga</a>
+            
+                    </div>
+                </div>
+                <div class="table-responsive text-nowrap">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>№</th>
+                                <th>Аmalga oshiriladigan ishlar</th>
+                                <th>Ball</th>
+                                <th>Baholovchilar</th>
+                                <th>Batafsil...</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-border-bottom-0">
+                            {% for i in lists %}
+                            <tr>
+                                <th>{{forloop.counter}}</th>
+                                <th><strong class="text-wrap w-50">{{i.question}}</strong></th>
+                                <th><strong>{{i.ball_of_question}}</strong></th>
+                                <th>
+                                    {% for o in i.put_ball.all %}
+                                        <ul>
+                                            <li>{{o.first_name}}</li>
+                                        </ul>
+                                    {% endfor %}
+                                </th>
+                                <th>
+                                    <div class="col-lg-4 col-md-6">
+                                        <div class="mt-3">
+                                            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+                                                data-bs-target="#offcanvasBoth-{{ forloop.counter }}" aria-controls="offcanvasBoth">
+                                                Batafsil...
+                                            </button>
+            
+                                            <div class="offcanvas offcanvas-end w-75" data-bs-scroll="true" tabindex="-1"
+                                                id="offcanvasBoth-{{ forloop.counter }}" aria-labelledby="offcanvasBothLabel">
+                                                <div class="offcanvas-header">
+                                                    <h5 id="offcanvasBothLabel-{{ forloop.counter }}" class="offcanvas-title">
+                                                        Batafsil ko'rish</h5>
+                                                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="offcanvas-body my-auto mx-0 flex-grow-0">
+                                                    <div class="card">
+                                                        <div class="table-responsive text-nowrap">
+                                                            <table class="table table-hover">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Ballarni hisoblash metodikasi</th>
+                                                                        <th>Natijalarni hisoblash muddati</th>
+                                                                        <th>Ball</th>
+                                                                        <th>Jarima ballari</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody class="table-border-bottom-0">
+                                                                    <tr>
+                                                                        <td><stronп class="text-wrap  w-25 lh-1">{{i.description}}</strong>
+                                                                        </td>
+                                                                        <td>{{i.date_of_calculation_ball}}</td>
+                                                                        <td>{{i.ball_of_question}}</td>
+                                                                        <td class="text-wrap">{{i.description1}}</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mt-3">
+                                                        <!-- Button trigger modal -->
+                                                        <div class="row">
+                                                            
+                                                            {% if i.filter_file_upload  %}
+                                                            <div class="col-6">
+                                                                <a href="#" class="btn btn-outline-primary w-50">Ma'lumot yuborilgan</a>
+                                                            </div>
+                                                            
+                                                            
+                                                            {% else %}
+                                                            <div class="col-6">
+                                                                <a href="{% url 'file_upload' i.id %}" class="btn btn-outline-primary w-50">Ma'lumot yuborish</a>
+                                                            </div>
+                                                            
+                                                            {% endif %}
+                                                            
+                                                        </div>
+                                                    </div>
+            
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            </div>>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+            <div class="footer-wrap">
+                <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                    <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Yaratgan © <a
+                            href="https://www.bootstrapdash.com/" target="_blank">Qo'chqorov Jurat Jalilovich
+                        </a>2023</span>
+                    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">KPI Platform<a
+                            href="https://www.bootstrapdash.com/" target="_blank"> </a> dasturi</span>
+                </div>
+            </div>
+        </footer>
+        <!-- partial -->
+    </div>
+
+    {% endblock %}

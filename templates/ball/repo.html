@@ -1,0 +1,59 @@
+{% extends 'ball/bases.html' %}
+{% block title %} <title>KPI Foydalanuvchi </title> {% endblock %}
+
+{% block blockName %}
+
+
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row d-flex">
+                      <div class="col-10"><h4 class="card-title">Baho Qaytatish</h4></div>
+                      <div class="col-2"><a href="{% url 'questionsBall' queryset.question_id.categories_id.id %}" class="btn btn-inverse-primary">Bosh Sahifaga</a></div>
+                    </div>
+                    <p class="card-description">
+                      {{ queryset.question_id.question }}
+                    </p>
+                    <p style="color: red;">{{ error }}</p>
+
+                    <form class="forms-sample" action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                        <label>Baho Qaytarish uchun 0 dan pastgi miqdor qo'yiladi: </label>
+                        <input type="number" name='number' class="form-control" placeholder="0 dan kichik sonlar kiriting">
+                    </div>
+                    <div class="form-group">
+                        <label>Fayl yuklash uchun quydagi formatlarni yuklay olasiz: .pdf, .doc, .xlsx, .pptx, .zip</label>
+                        <input type="file" name='file' class="file form-control" lang="uz">
+                    </div>
+                      <button type="submit" class="btn btn-primary me-2">Yuklash</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <footer class="footer">
+            <div class="footer-wrap">
+                <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                    <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Yaratgan © <a
+                            href="https://www.bootstrapdash.com/" target="_blank">Qo'chqorov Jurat Jalilovich
+                        </a>2023</span>
+                    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">KPI Platform<a
+                            href="https://www.bootstrapdash.com/" target="_blank"> </a> dasturi</span>
+                </div>
+            </div>
+        </footer>
+        <!-- partial -->
+    </div>
+
+{% endblock %}
+
+
+
+
+
+
+

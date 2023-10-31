@@ -1,0 +1,63 @@
+{% extends 'user/base.html' %}
+{% block title %} <title>KPI Foydalanuvchi </title> {% endblock %}
+
+{% block blockName %}
+
+
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="m-1">
+                <a href="{% url 'homeBall'  %}" class="btn btn-inverse-primary">Bosh Sahifaga</a>
+            </div>
+            <div class="d-flex justify-content-between flex-wrap ">
+                
+                
+                <div class="card border-success mb-3" style="max-width: 18rem;">
+                       
+                    </div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <td>Savol</td>
+                                <td>Foydalanuvchi</td>
+                                <td>Qaytarilgan Ball</td>
+                                <td>Izoh</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for objects in queryset %}
+                                <tr>
+                                    <td class="text-wrap w-25">{{objects.question_id.question_id.question}}</td>
+                                    <td>{{objects.author.first_name}} {{objects.author.last_name}}</td>
+                                    <td>{{objects.ball}} ball</td>
+                                    <td><a href="{{ objects.files.url }}" target="_blank"><i class="mdi mdi-briefcase-download"></i></a></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                      </table>       
+                    
+                    
+                  </div>
+                  
+            </div>
+    </div>
+                        
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+            <div class="footer-wrap">
+                <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                    <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Yaratgan © <a
+                            href="https://www.bootstrapdash.com/" target="_blank">Qo'chqorov Jurat Jalilovich
+                        </a>2023</span>
+                    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">KPI Platform<a
+                            href="https://www.bootstrapdash.com/" target="_blank"> </a> dasturi</span>
+                </div>
+            </div>
+        </footer>
+        <!-- partial -->
+    </div>
+
+    {% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'user/base.html' %}
+{% block title %} <title>KPI Foydalanuvchi </title> {% endblock %}
+
+{% block blockName %}
+
+
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="m-1">
+                <a href="{% url 'home' %}" class="btn btn-inverse-primary">Bosh Sahifaga</a>
+            </div>
+            <div class="d-flex justify-content-between flex-wrap ">
+                
+                {% for object in lists %}
+                <div class="card border-success mb-3" style="max-width: 18rem;">
+                    <div class="card-header bg-transparent border-success"><span style="color: brown;">Savol:</span> {{ object.question_id.question }}</div>
+                    <div class="card-header bg-transparent border-success"><span style="color: brown;">O'tish Ballari:</span> {{ object.question_id.ball_of_question }} ball</div>
+                    <div class="card-header bg-transparent border-success"><span style="color: brown;">Hisoblangan:</span> {{ object.sums }} ball</div>
+                    <div class="card-body text-success">
+                    <div class="row">
+                            <div class="col-10"><h5 class="card-title">Yuklangan fayl</h5></div>
+                            <div class="col-2"><a href="{{ object.files.url }}" target="_blank"><i class="mdi mdi-briefcase-download"></i></a></div>
+                    </div>
+                      <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <td>Avtor</td>
+                                <td>Ball</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for objects in object.get_put_ball %}
+                                <tr>
+                                    <td>{{objects.author.first_name}} {{objects.author.last_name}}</td>
+                                    <td>{{objects.ball}} ball</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                      </table>        
+                      <br>
+                      <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <td>Avtor</td>
+                                <td>Ball</td>
+                                <td>Izoh</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for objectss in object.repo %}
+                                <tr>
+                                    <td>{{objectss.author.first_name}} {{objects.author.last_name}}</td>
+                                    <td>{{objectss.ball}} ball</td>
+                                    <td><a href="{{ objectss.files.url }}" class="align-items-center" target="_blank"><i class="mdi mdi-briefcase-download"></i></a></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                      </table>      
+                </table>
+                    </div>
+                            
+                    
+                    
+                  </div>
+                  {% endfor %}  
+            </div>
+                        
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+            <div class="footer-wrap">
+                <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                    <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Yaratgan © <a
+                            href="https://www.bootstrapdash.com/" target="_blank">Qo'chqorov Jurat Jalilovich
+                        </a>2023</span>
+                    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">KPI Platform<a
+                            href="https://www.bootstrapdash.com/" target="_blank"> </a> dasturi</span>
+                </div>
+            </div>
+        </footer>
+        <!-- partial -->
+    </div>
+
+    {% endblock %}

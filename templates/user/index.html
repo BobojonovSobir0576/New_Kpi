@@ -1,0 +1,66 @@
+{% extends 'user/base.html' %}
+{% block title %} <title>KPI Foydalanuvchi </title> {% endblock %}
+
+{% block blockName %}
+<!-- partial -->
+<div class="container-fluid page-body-wrapper">
+  <div class="main-panel">
+    <div class="content-wrapper">
+
+      <div class="row">
+        {% for items in list_main_cate %}
+        <div class="col-12">
+            <div class="card mb-4">
+              <div class="card-body">
+                <h3 class="card-text">
+                   {{items.name}}
+                </h3>
+                <p>Umumiy ballari: {{ items.ball_of_cate }}</p>
+                <p class="demo-inline-spacing">
+                  <a
+                    class="btn btn-primary me-1"
+                    data-bs-toggle="collapse"
+                    href="#collapseExample{{forloop.counter}}"
+                    role="button"
+                    aria-expanded="false"
+                    aria-controls="collapseExample{{forloop.counter}}"
+                  >
+                    Batafsil... 
+                  </a>
+                </p>
+                <div class="collapse" id="collapseExample{{forloop.counter}}">
+                  <div class="d-grid d-sm-flex p-3 border">
+                    <div class="list-group">
+                        {% for i in items.cate %}
+                        <a href="{% url 'questions' i.id %}" class="list-group-item list-group-item-action">{{i.name}},   <span style="color: red;">{{i.ball_of_cate}} ball</span> </a> <br>
+                        {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+    </div>
+    
+
+
+
+
+    
+    </div>
+    <!-- content-wrapper ends -->
+    <!-- partial:partials/_footer.html -->
+    <footer class="footer">
+      <div class="footer-wrap">
+        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+          <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Yaratgan © <a
+              href="https://www.bootstrapdash.com/" target="_blank">Qo'chqorov Jurat Jalilovich </a>2023</span>
+          <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">KPI Platform<a
+              href="https://www.bootstrapdash.com/" target="_blank">  </a> dasturi</span>
+        </div>
+      </div>
+    </footer>
+    <!-- partial -->
+  </div>
+{% endblock %}
